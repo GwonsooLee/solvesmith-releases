@@ -1,11 +1,11 @@
-# Codeforce Helper — 다운로드
+# 🥋 AlgoDojo (알고도장) — 다운로드
 
-Codeforces · LeetCode · AtCoder 훈련용 macOS 데스크톱 앱의 공식 배포 저장소입니다.
+알고리즘은 배우는 게 아니라 **단련하는** 것. Codeforces · LeetCode · AtCoder 훈련용 macOS 데스크톱 앱의 공식 배포 저장소입니다.
 
-**⬇ 다운로드: https://gwonsoolee.github.io/codeforce-helper-releases/**
+**⬇ 다운로드: https://gwonsoolee.github.io/algodojo-releases/**
 
 - 로컬 채점 (C++/Python) · 단계별 AI 힌트 · 오답노트 자동 발행 · 간격 반복 복습
-- [Releases](https://github.com/GwonsooLee/codeforce-helper-releases/releases)에서 모든 버전의 DMG를 받을 수 있습니다
+- [Releases](https://github.com/GwonsooLee/algodojo-releases/releases)에서 모든 버전의 DMG를 받을 수 있습니다
 
 ## 설치
 
@@ -18,4 +18,5 @@ Codeforces · LeetCode · AtCoder 훈련용 macOS 데스크톱 앱의 공식 배
 
 요구 사항: macOS (Apple Silicon) · Xcode Command Line Tools · AI 기능 사용 시 Anthropic/OpenAI API 키(선택)
 
+> 구 이름: Codeforce Helper — 현재 버전의 앱 파일명은 아직 `Codeforce Helper.app`이며 다음 업데이트에서 변경됩니다.
 > 이 저장소는 배포 바이너리 전용입니다. 소스 코드는 비공개입니다.
