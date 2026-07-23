@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>AlgoDojo — Train algorithms like a martial art</title>
-<meta name="description" content="AlgoDojo: one desktop app for Codeforces, LeetCode and AtCoder training — local judging, staged AI hints, auto-published review notes, and spaced-repetition practice." />
+<title>Solvesmith — Forge your algorithms</title>
+<meta name="description" content="Solvesmith: one desktop app for Codeforces, LeetCode and AtCoder training — local judging, staged AI hints, auto-published review notes, and spaced-repetition practice." />
 <style>
   :root {
     --bg: #0e0f13; --bg2: #16181f; --bg3: #1e212b; --line: #2b2f3a;
@@ -74,21 +74,21 @@
   </div>
 
   <header>
-    <div class="logo">🥋</div>
-    <h1>AlgoDojo<span class="ko">알고도장</span></h1>
-    <p class="tagline" data-en>Algorithms aren't learned — they're <b>trained</b>.<br/>
+    <div class="logo">⚒️</div>
+    <h1>Solvesmith<span class="ko">알고리즘 대장간</span></h1>
+    <p class="tagline" data-en>Solutions aren't found — they're <b>forged</b>.<br/>
       Codeforces · LeetCode · AtCoder practice in one app: local judging, staged AI hints, review notes, spaced repetition.</p>
-    <p class="tagline" data-ko>알고리즘은 배우는 게 아니라 <b>단련하는</b> 것.<br/>
+    <p class="tagline" data-ko>풀이는 찾는 게 아니라 <b>벼리는</b> 것.<br/>
       Codeforces · LeetCode · AtCoder 훈련을 한 앱에서 — 로컬 채점부터 오답노트, 간격 반복 복습까지.</p>
     <div class="belt-line"></div>
     <div class="cta">
-      <a id="download-btn" class="btn" href="https://github.com/GwonsooLee/algodojo-releases/releases/latest"><span data-en>⬇ Download for macOS</span><span data-ko>⬇ macOS용 다운로드</span></a>
+      <a id="download-btn" class="btn" href="https://github.com/GwonsooLee/solvesmith-releases/releases/latest"><span data-en>⬇ Download for macOS</span><span data-ko>⬇ macOS용 다운로드</span></a>
       <span id="dl-meta" class="meta">Apple Silicon (M1+) · Free</span>
     </div>
   </header>
 
   <div class="sec">
-    <h2><span class="mark">▮</span> <span data-en>Training tools</span><span data-ko>수련 도구</span></h2>
+    <h2><span class="mark">▮</span> <span data-en>The forge</span><span data-ko>대장간의 도구</span></h2>
     <div class="grid">
       <div class="card"><b data-en>⚡ Local judging (C++ · Python)</b><b data-ko>⚡ 로컬 채점 (C++ · Python)</b>
         <p data-en>Open a problem and its samples are extracted and judged instantly. LeetCode gets both AI-harness local judging and remote runs on the real LC judge.</p>
@@ -112,7 +112,7 @@
   </div>
 
   <div class="sec">
-    <h2><span class="mark">▮</span> <span data-en>Dojo rules</span><span data-ko>도장의 규칙</span></h2>
+    <h2><span class="mark">▮</span> <span data-en>Forge rules</span><span data-ko>대장간의 규칙</span></h2>
     <div class="dojo-rules">
       <ul data-en>
         <li><b>Struggle first.</b> Hints unlock only after 3 failures — building muscle beats reading answers.</li>
@@ -155,8 +155,8 @@
         위 2번의 터미널 명령 한 줄이면 해결되며, 이후에는 계속 정상 실행됩니다.</span>
       </div>
       <p style="color:var(--muted);font-size:13px;margin-top:12px">
-        <span data-en>ℹ️ The app bundle is currently named <code>Codeforce Helper.app</code> — it will be renamed to AlgoDojo in an upcoming update.</span>
-        <span data-ko>ℹ️ 현재 버전의 앱 파일명은 <code>Codeforce Helper.app</code>입니다 — 다음 업데이트에서 AlgoDojo로 바뀝니다.</span>
+        <span data-en>ℹ️ The app bundle is currently named <code>Codeforce Helper.app</code> — it will be renamed to Solvesmith in an upcoming update.</span>
+        <span data-ko>ℹ️ 현재 버전의 앱 파일명은 <code>Codeforce Helper.app</code>입니다 — 다음 업데이트에서 Solvesmith로 바뀝니다.</span>
       </p>
     </div>
   </div>
@@ -180,8 +180,8 @@
   </div>
 
   <footer>
-    <a href="https://github.com/GwonsooLee/algodojo-releases/releases"><span data-en>Release notes</span><span data-ko>전체 릴리스 노트</span></a> · <span data-en>Questions: GitHub Issues</span><span data-ko>문의: GitHub Issues</span><br/>
-    🥋 AlgoDojo <span data-en>(formerly Codeforce Helper)</span><span data-ko>(구 Codeforce Helper)</span> · © 2026 Gwonsoo Lee
+    <a href="https://github.com/GwonsooLee/solvesmith-releases/releases"><span data-en>Release notes</span><span data-ko>전체 릴리스 노트</span></a> · <span data-en>Questions: GitHub Issues</span><span data-ko>문의: GitHub Issues</span><br/>
+    ⚒️ Solvesmith <span data-en>(formerly Codeforce Helper)</span><span data-ko>(구 Codeforce Helper)</span> · © 2026 Gwonsoo Lee
   </footer>
 </div>
 <script>
@@ -191,15 +191,15 @@
     document.documentElement.lang = l;
     document.getElementById('lang-en').classList.toggle('on', l !== 'ko');
     document.getElementById('lang-ko').classList.toggle('on', l === 'ko');
-    try { localStorage.setItem('adLang', l); } catch (e) {}
+    try { localStorage.setItem('ssLang', l); } catch (e) {}
   }
   setLang((function () {
-    try { const s = localStorage.getItem('adLang'); if (s) return s; } catch (e) {}
+    try { const s = localStorage.getItem('ssLang'); if (s) return s; } catch (e) {}
     return /^ko/.test(navigator.language || '') ? 'ko' : 'en';
   })());
 
   // 최신 릴리스의 DMG 직링크 + 버전 표시 (실패하면 릴리스 페이지 링크 유지)
-  fetch('https://api.github.com/repos/GwonsooLee/algodojo-releases/releases/latest')
+  fetch('https://api.github.com/repos/GwonsooLee/solvesmith-releases/releases/latest')
     .then((r) => (r.ok ? r.json() : null))
     .then((rel) => {
       if (!rel) return;
