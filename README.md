@@ -8,16 +8,9 @@ All versions are available on the [Releases](https://github.com/GwonsooLee/solve
 
 ## Install
 
-**One-line install (recommended — no security prompts):**
-```bash
-curl -fsSL https://gwonsoolee.github.io/solvesmith-releases/install.sh | bash
-```
+Download the DMG, drag **Solvesmith** into Applications, launch. **Signed & notarized by Apple** — no security warnings, and the app auto-updates from v1.9.1.
 
-Or manually: open the DMG, drag the app into **Applications**, then run once:
-```bash
-find "/Applications/Solvesmith.app" -exec xattr -c {} +
-```
-   ("App is damaged" is macOS Gatekeeper's message for unsigned internet downloads — the app is fine.)
+CLI alternative: `curl -fsSL https://gwonsoolee.github.io/solvesmith-releases/install.sh | bash`
 
 Requirements: macOS (Apple Silicon) · Xcode Command Line Tools · optional Anthropic/OpenAI API key for AI features
 
@@ -34,7 +27,7 @@ Requirements: macOS (Apple Silicon) · Xcode Command Line Tools · optional Anth
 **⬇ 다운로드: https://gwonsoolee.github.io/solvesmith-releases/**
 
 1. DMG를 열고 앱을 응용 프로그램 폴더로 드래그
-2. 한 줄 설치(권장): `curl -fsSL https://gwonsoolee.github.io/solvesmith-releases/install.sh | bash` — 또는 DMG 설치 후 최초 1회 `find "/Applications/Solvesmith.app" -exec xattr -c {} +`
+2. 실행 — Apple 서명·공증 완료라 경고 없이 바로 열립니다 (v1.9.1부터 자동 업데이트)
 
 요구 사항: macOS (Apple Silicon) · Xcode Command Line Tools · AI 기능 사용 시 API 키(선택)
 

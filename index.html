@@ -132,39 +132,19 @@
   <div class="sec">
     <h2><span class="mark">▮</span> <span data-en>Install</span><span data-ko>설치 방법</span></h2>
     <div class="install">
-      <p data-en style="margin-bottom:8px"><b>Option 1 — one-line install (recommended, no security prompts):</b><br/>
-      Open Terminal and paste:</p>
-      <pre data-en>curl -fsSL https://gwonsoolee.github.io/solvesmith-releases/install.sh | bash</pre>
-      <p data-en style="color:var(--muted);font-size:13px;margin-bottom:14px">Downloads the latest release via curl (which skips macOS quarantine), installs to Applications and launches it. The <a href="https://github.com/GwonsooLee/solvesmith-releases/blob/main/install.sh">script</a> is ~40 lines you can read first.</p>
       <ol data-en>
-        <li><b>Option 2 — manual:</b> download the DMG above, open it, drag the app into <b>Applications</b></li>
-        <li>First launch only — open Terminal and run:
-          <pre>find "/Applications/Solvesmith.app" -exec xattr -c {} +</pre>
-        </li>
-        <li>Launch the app — it self-diagnoses your environment and tells you how to install anything missing</li>
+        <li>Download the DMG above and open it</li>
+        <li>Drag <b>Solvesmith</b> into <b>Applications</b> and launch it — that's it. The app is <b>signed &amp; notarized by Apple</b>, so there are no security warnings.</li>
+        <li>On first launch it self-diagnoses your environment and tells you how to install anything missing</li>
       </ol>
-      <p data-ko style="margin-bottom:8px"><b>방법 1 — 한 줄 설치 (권장, 보안 경고 없음):</b><br/>
-      터미널을 열고 붙여넣기:</p>
-      <pre data-ko>curl -fsSL https://gwonsoolee.github.io/solvesmith-releases/install.sh | bash</pre>
-      <p data-ko style="color:var(--muted);font-size:13px;margin-bottom:14px">curl 다운로드에는 macOS 격리 속성이 붙지 않아 "손상됨" 경고가 아예 발생하지 않습니다. 최신 버전을 받아 응용 프로그램에 설치하고 실행까지 해줍니다 (<a href="https://github.com/GwonsooLee/solvesmith-releases/blob/main/install.sh">스크립트</a>는 40줄 — 먼저 읽어봐도 됩니다).</p>
       <ol data-ko>
-        <li><b>방법 2 — 수동:</b> 위 버튼으로 DMG를 받아 열고, 앱을 <b>응용 프로그램</b> 폴더로 드래그</li>
-        <li>최초 1회 — 터미널에서:
-          <pre>find "/Applications/Solvesmith.app" -exec xattr -c {} +</pre>
-        </li>
-        <li>앱 실행 → 시작 시 환경을 자가 진단하고 부족한 도구의 설치법을 알려줍니다</li>
+        <li>위 버튼으로 DMG를 받아 엽니다</li>
+        <li><b>Solvesmith</b>를 <b>응용 프로그램</b>에 드래그하고 실행 — 끝입니다. <b>Apple 서명·공증</b>이 완료되어 보안 경고가 없습니다.</li>
+        <li>첫 실행 시 환경을 자가 진단하고 부족한 도구의 설치법을 알려줍니다</li>
       </ol>
-      <div class="note" style="margin-top:14px">
-        <span data-en><b>Seeing “app is damaged and can’t be opened”?</b><br/>
-        The app isn’t damaged — macOS shows this for unsigned apps downloaded from the internet.
-        Use the one-line install above (no prompts at all), or run the command in Option 2 once.</span>
-        <span data-ko><b>"손상되었기 때문에 열 수 없습니다"라고 뜨나요?</b><br/>
-        앱이 손상된 것이 아닙니다 — 서명되지 않은 앱을 인터넷에서 받으면 macOS가 표시하는 보안 안내입니다.
-        위 "방법 1" 한 줄 설치를 쓰면 경고가 아예 나지 않고, 이미 받았다면 방법 2의 명령 한 번이면 해결됩니다.</span>
-      </div>
-      <p style="color:var(--muted);font-size:13px;margin-top:12px">
-        <span data-en>ℹ️ Upgrading from Codeforce Helper? Settings migrate automatically on first launch — just delete the old <code>Codeforce Helper.app</code> from Applications.</span>
-        <span data-ko>ℹ️ 구 Codeforce Helper에서 업그레이드하시나요? 설정은 첫 실행 때 자동 이전됩니다 — 구 <code>Codeforce Helper.app</code>만 응용 프로그램에서 삭제하세요.</span>
+      <p style="color:var(--muted);font-size:13px;margin-top:10px">
+        <span data-en>⚙️ Prefer the command line? <code>curl -fsSL https://gwonsoolee.github.io/solvesmith-releases/install.sh | bash</code> installs and launches in one line. Updates are automatic from v1.9.1 — the app updates itself in the background.</span>
+        <span data-ko>⚙️ 터미널을 선호하면 <code>curl -fsSL https://gwonsoolee.github.io/solvesmith-releases/install.sh | bash</code> 한 줄로 설치됩니다. v1.9.1부터는 <b>자동 업데이트</b> — 앱이 백그라운드에서 스스로 최신 버전을 받습니다.</span>
       </p>
     </div>
   </div>
