@@ -1,27 +1,31 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="en">
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>AlgoDojo — 알고리즘 수련장</title>
-<meta name="description" content="AlgoDojo(알고도장): Codeforces·LeetCode·AtCoder 훈련을 한 앱에서. 로컬 채점, 단계별 AI 힌트, 오답노트 자동 발행, 간격 반복 복습으로 알고리즘 실력을 단련하세요." />
+<title>AlgoDojo — Train algorithms like a martial art</title>
+<meta name="description" content="AlgoDojo: one desktop app for Codeforces, LeetCode and AtCoder training — local judging, staged AI hints, auto-published review notes, and spaced-repetition practice." />
 <style>
   :root {
     --bg: #0e0f13; --bg2: #16181f; --bg3: #1e212b; --line: #2b2f3a;
     --text: #e8eaef; --muted: #98a0af;
-    --belt: #e5534b;         /* 도장의 검은 띠 위 붉은 매듭 — 시그니처 색 */
-    --belt-soft: #ff8a80;
-    --accent2: #7ee787;
+    --belt: #e5534b; --belt-soft: #ff8a80; --accent2: #7ee787;
     --radius: 12px;
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body { background: var(--bg); color: var(--text); font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Segoe UI", sans-serif; line-height: 1.6; }
   .wrap { max-width: 860px; margin: 0 auto; padding: 0 24px; }
-  header { padding: 76px 0 44px; text-align: center; }
+  .langbar { display: flex; justify-content: flex-end; padding-top: 16px; gap: 6px; }
+  .langbar button {
+    background: var(--bg2); color: var(--muted); border: 1px solid var(--line);
+    border-radius: 999px; padding: 4px 14px; font-size: 12.5px; cursor: pointer;
+  }
+  .langbar button.on { color: var(--text); border-color: var(--belt); }
+  header { padding: 52px 0 44px; text-align: center; }
   .logo { font-size: 58px; }
   h1 { font-size: 38px; margin: 14px 0 4px; letter-spacing: -0.5px; }
   h1 .ko { color: var(--muted); font-size: 19px; font-weight: 600; vertical-align: middle; margin-left: 8px; }
-  .tagline { color: var(--muted); font-size: 17px; max-width: 580px; margin: 10px auto 0; }
+  .tagline { color: var(--muted); font-size: 17px; max-width: 600px; margin: 10px auto 0; }
   .belt-line { width: 72px; height: 4px; background: var(--belt); border-radius: 2px; margin: 22px auto 0; }
   .cta { margin: 30px 0 8px; }
   .btn {
@@ -57,38 +61,66 @@
   .dojo-rules li b { color: var(--text); }
   footer { padding: 40px 0 60px; text-align: center; color: var(--muted); font-size: 13px; }
   a { color: var(--belt-soft); }
+  [data-ko] { display: none; }
+  html.ko [data-en] { display: none; }
+  html.ko [data-ko] { display: revert; }
 </style>
 </head>
 <body>
 <div class="wrap">
+  <div class="langbar">
+    <button id="lang-en" onclick="setLang('en')">English</button>
+    <button id="lang-ko" onclick="setLang('ko')">한국어</button>
+  </div>
+
   <header>
     <div class="logo">🥋</div>
     <h1>AlgoDojo<span class="ko">알고도장</span></h1>
-    <p class="tagline">알고리즘은 배우는 게 아니라 <b>단련하는</b> 것.<br/>
-    Codeforces · LeetCode · AtCoder 훈련을 한 앱에서 — 로컬 채점부터 오답노트, 간격 반복 복습까지.</p>
+    <p class="tagline" data-en>Algorithms aren't learned — they're <b>trained</b>.<br/>
+      Codeforces · LeetCode · AtCoder practice in one app: local judging, staged AI hints, review notes, spaced repetition.</p>
+    <p class="tagline" data-ko>알고리즘은 배우는 게 아니라 <b>단련하는</b> 것.<br/>
+      Codeforces · LeetCode · AtCoder 훈련을 한 앱에서 — 로컬 채점부터 오답노트, 간격 반복 복습까지.</p>
     <div class="belt-line"></div>
     <div class="cta">
-      <a id="download-btn" class="btn" href="https://github.com/GwonsooLee/algodojo-releases/releases/latest">⬇ macOS용 다운로드</a>
-      <span id="dl-meta" class="meta">Apple Silicon (M1 이상) · 무료</span>
+      <a id="download-btn" class="btn" href="https://github.com/GwonsooLee/algodojo-releases/releases/latest"><span data-en>⬇ Download for macOS</span><span data-ko>⬇ macOS용 다운로드</span></a>
+      <span id="dl-meta" class="meta">Apple Silicon (M1+) · Free</span>
     </div>
   </header>
 
   <div class="sec">
-    <h2><span class="mark">▮</span> 수련 도구</h2>
+    <h2><span class="mark">▮</span> <span data-en>Training tools</span><span data-ko>수련 도구</span></h2>
     <div class="grid">
-      <div class="card"><b>⚡ 로컬 채점 (C++ · Python)</b><p>문제를 열면 예제가 자동 추출되고 즉시 채점됩니다. LeetCode는 AI 하니스 로컬 채점 + 실제 LC 저지 원격 채점을 모두 지원.</p></div>
-      <div class="card"><b>💡 단계별 AI 힌트</b><p>관찰 → 접근 → 알고리즘 → 전체 풀이 4단계. 3회 이상 틀려야 열립니다 — 답을 보는 게 아니라 스스로 부딪히는 훈련.</p></div>
-      <div class="card"><b>📝 오답노트 자동 발행</b><p>풀이 완료 시 실패 기록을 근거로 오답노트 생성 — 로컬 채점으로 검증한 모범 답안 포함. 블로그로 발행됩니다.</p></div>
-      <div class="card"><b>🔮 유형 인식 훈련</b><p>힌트 전에 알고리즘 유형을 예측하고 공식 태그와 대조 — "못 알아본 유형"이 약점 데이터로 쌓이고 원클릭 드릴로 이어집니다.</p></div>
-      <div class="card"><b>🔁 간격 반복 복습</b><p>1/7/30/90일 주기 백지 재풀이. 플래시카드·복습 큐·재도전 큐가 잊어버릴 타이밍에 문제를 다시 가져옵니다.</p></div>
-      <div class="card"><b>🏁 실전 모드</b><p>가상 대회 + 퍼포먼스 추정, 스피드런, 업솔빙, 주간 코치 리포트, 스트릭 — 레이팅을 올리는 습관 고리.</p></div>
+      <div class="card"><b data-en>⚡ Local judging (C++ · Python)</b><b data-ko>⚡ 로컬 채점 (C++ · Python)</b>
+        <p data-en>Open a problem and its samples are extracted and judged instantly. LeetCode gets both AI-harness local judging and remote runs on the real LC judge.</p>
+        <p data-ko>문제를 열면 예제가 자동 추출되고 즉시 채점됩니다. LeetCode는 AI 하니스 로컬 채점 + 실제 LC 저지 원격 채점을 모두 지원.</p></div>
+      <div class="card"><b data-en>💡 Staged AI hints</b><b data-ko>💡 단계별 AI 힌트</b>
+        <p data-en>Observation → approach → algorithm → full solution. Hints unlock only after 3 failed attempts — you build muscle, not answer-peeking habits.</p>
+        <p data-ko>관찰 → 접근 → 알고리즘 → 전체 풀이 4단계. 3회 이상 틀려야 열립니다 — 답을 보는 게 아니라 스스로 부딪히는 훈련.</p></div>
+      <div class="card"><b data-en>📝 Auto review notes</b><b data-ko>📝 오답노트 자동 발행</b>
+        <p data-en>On solve, a review note is generated from your actual failure log — including a locally-verified model solution — and published to your blog.</p>
+        <p data-ko>풀이 완료 시 실패 기록을 근거로 오답노트 생성 — 로컬 채점으로 검증한 모범 답안 포함. 블로그로 발행됩니다.</p></div>
+      <div class="card"><b data-en>🔮 Pattern recognition drills</b><b data-ko>🔮 유형 인식 훈련</b>
+        <p data-en>Guess the algorithm type before opening hints, then compare with official tags. Types you keep missing become weakness data with one-click drills.</p>
+        <p data-ko>힌트 전에 알고리즘 유형을 예측하고 공식 태그와 대조 — "못 알아본 유형"이 약점 데이터로 쌓이고 원클릭 드릴로 이어집니다.</p></div>
+      <div class="card"><b data-en>🔁 Spaced repetition</b><b data-ko>🔁 간격 반복 복습</b>
+        <p data-en>Re-solve from scratch at 1/7/30/90-day intervals. Flashcards, review queues and retry queues bring problems back right before you forget them.</p>
+        <p data-ko>1/7/30/90일 주기 백지 재풀이. 플래시카드·복습 큐·재도전 큐가 잊어버릴 타이밍에 문제를 다시 가져옵니다.</p></div>
+      <div class="card"><b data-en>🏁 Contest mode</b><b data-ko>🏁 실전 모드</b>
+        <p data-en>Virtual contests with performance estimates, speedruns, upsolving import, weekly coach reports and streaks — the habit loop that raises rating.</p>
+        <p data-ko>가상 대회 + 퍼포먼스 추정, 스피드런, 업솔빙, 주간 코치 리포트, 스트릭 — 레이팅을 올리는 습관 고리.</p></div>
     </div>
   </div>
 
   <div class="sec">
-    <h2><span class="mark">▮</span> 도장의 규칙</h2>
+    <h2><span class="mark">▮</span> <span data-en>Dojo rules</span><span data-ko>도장의 규칙</span></h2>
     <div class="dojo-rules">
-      <ul>
+      <ul data-en>
+        <li><b>Struggle first.</b> Hints unlock only after 3 failures — building muscle beats reading answers.</li>
+        <li><b>Records are skill.</b> Every attempt, failure and review becomes data that exposes your weaknesses.</li>
+        <li><b>Submit by hand.</b> No automated submissions — we respect Codeforces policy.</li>
+        <li><b>Your data stays yours.</b> Study records and API keys live only on your machine.</li>
+      </ul>
+      <ul data-ko>
         <li><b>스스로 먼저.</b> 힌트는 3회 실패 후에만 — 정답 열람이 아니라 근육을 만드는 순서로.</li>
         <li><b>기록이 실력.</b> 모든 시도·실패·복습이 데이터로 남아 약점을 드러냅니다.</li>
         <li><b>제출은 손으로.</b> 자동 제출은 하지 않습니다 — Codeforces 정책을 존중합니다.</li>
@@ -98,29 +130,47 @@
   </div>
 
   <div class="sec">
-    <h2><span class="mark">▮</span> 설치 방법</h2>
+    <h2><span class="mark">▮</span> <span data-en>Install</span><span data-ko>설치 방법</span></h2>
     <div class="install">
-      <ol>
+      <ol data-en>
+        <li>Download the DMG above, open it, and drag the app into <b>Applications</b></li>
+        <li><b>First launch only</b> — open Terminal and run:
+          <pre>xattr -cr "/Applications/Codeforce Helper.app"</pre>
+        </li>
+        <li>Launch the app — it self-diagnoses your environment and tells you how to install anything missing</li>
+      </ol>
+      <ol data-ko>
         <li>위 버튼으로 DMG를 받아 열고, 앱을 <b>응용 프로그램</b> 폴더로 드래그</li>
-        <li><b>최초 1회</b> — 터미널을 열고 아래 명령 실행 (Spotlight에서 "터미널" 검색):
+        <li><b>최초 1회</b> — 터미널을 열고 아래 명령 실행:
           <pre>xattr -cr "/Applications/Codeforce Helper.app"</pre>
         </li>
         <li>앱 실행 → 시작 시 환경을 자가 진단하고 부족한 도구의 설치법을 알려줍니다</li>
       </ol>
       <div class="note" style="margin-top:14px">
-        <b>"손상되었기 때문에 열 수 없습니다"라고 뜨나요?</b><br/>
+        <span data-en><b>Seeing “app is damaged and can’t be opened”?</b><br/>
+        The app isn’t damaged — macOS shows this for unsigned apps downloaded from the internet.
+        The one-line Terminal command in step 2 fixes it permanently.</span>
+        <span data-ko><b>"손상되었기 때문에 열 수 없습니다"라고 뜨나요?</b><br/>
         앱이 손상된 것이 아닙니다 — 서명되지 않은 앱을 인터넷에서 받으면 macOS가 표시하는 보안 안내입니다.
-        위 2번의 터미널 명령 한 줄이면 해결되며, 이후에는 계속 정상 실행됩니다.
+        위 2번의 터미널 명령 한 줄이면 해결되며, 이후에는 계속 정상 실행됩니다.</span>
       </div>
       <p style="color:var(--muted);font-size:13px;margin-top:12px">
-        ℹ️ 현재 버전의 앱 파일명은 <code>Codeforce Helper.app</code>입니다 — 다음 업데이트에서 AlgoDojo로 바뀝니다.
+        <span data-en>ℹ️ The app bundle is currently named <code>Codeforce Helper.app</code> — it will be renamed to AlgoDojo in an upcoming update.</span>
+        <span data-ko>ℹ️ 현재 버전의 앱 파일명은 <code>Codeforce Helper.app</code>입니다 — 다음 업데이트에서 AlgoDojo로 바뀝니다.</span>
       </p>
     </div>
   </div>
 
   <div class="sec">
-    <h2><span class="mark">▮</span> 준비물</h2>
-    <table>
+    <h2><span class="mark">▮</span> <span data-en>Requirements</span><span data-ko>준비물</span></h2>
+    <table data-en>
+      <tr><th>Item</th><th>Notes</th></tr>
+      <tr><td>macOS (Apple Silicon)</td><td>M1 or later. Intel Macs not supported yet</td></tr>
+      <tr><td>Xcode Command Line Tools</td><td>Compiler + python3 for judging — <code>xcode-select --install</code></td></tr>
+      <tr><td>AI API key (optional)</td><td>Anthropic (Claude) or OpenAI key — only for AI hints, notes and translation. Entered in ⚙ Settings, stored locally only</td></tr>
+      <tr><td>1Password (optional)</td><td>With the op CLI, the 🔑 button auto-fills site logins</td></tr>
+    </table>
+    <table data-ko>
       <tr><th>항목</th><th>설명</th></tr>
       <tr><td>macOS (Apple Silicon)</td><td>M1 이상. Intel Mac은 현재 미지원</td></tr>
       <tr><td>Xcode Command Line Tools</td><td>채점용 컴파일러·python3 — <code>xcode-select --install</code></td></tr>
@@ -130,11 +180,24 @@
   </div>
 
   <footer>
-    <a href="https://github.com/GwonsooLee/algodojo-releases/releases">전체 릴리스 노트</a> · 문의: GitHub Issues<br/>
-    🥋 AlgoDojo (구 Codeforce Helper) · © 2026 Gwonsoo Lee
+    <a href="https://github.com/GwonsooLee/algodojo-releases/releases"><span data-en>Release notes</span><span data-ko>전체 릴리스 노트</span></a> · <span data-en>Questions: GitHub Issues</span><span data-ko>문의: GitHub Issues</span><br/>
+    🥋 AlgoDojo <span data-en>(formerly Codeforce Helper)</span><span data-ko>(구 Codeforce Helper)</span> · © 2026 Gwonsoo Lee
   </footer>
 </div>
 <script>
+  // 언어 토글 — 저장된 선택 > 브라우저 언어(ko면 한국어) > 영어
+  function setLang(l) {
+    document.documentElement.classList.toggle('ko', l === 'ko');
+    document.documentElement.lang = l;
+    document.getElementById('lang-en').classList.toggle('on', l !== 'ko');
+    document.getElementById('lang-ko').classList.toggle('on', l === 'ko');
+    try { localStorage.setItem('adLang', l); } catch (e) {}
+  }
+  setLang((function () {
+    try { const s = localStorage.getItem('adLang'); if (s) return s; } catch (e) {}
+    return /^ko/.test(navigator.language || '') ? 'ko' : 'en';
+  })());
+
   // 최신 릴리스의 DMG 직링크 + 버전 표시 (실패하면 릴리스 페이지 링크 유지)
   fetch('https://api.github.com/repos/GwonsooLee/algodojo-releases/releases/latest')
     .then((r) => (r.ok ? r.json() : null))
@@ -144,8 +207,7 @@
       if (dmg) {
         document.getElementById('download-btn').href = dmg.browser_download_url;
         const mb = Math.round(dmg.size / 1048576);
-        document.getElementById('dl-meta').textContent =
-          `${rel.tag_name} · Apple Silicon (M1 이상) · ${mb}MB · 무료`;
+        document.getElementById('dl-meta').textContent = `${rel.tag_name} · Apple Silicon (M1+) · ${mb}MB · Free`;
       }
     })
     .catch(() => {});
