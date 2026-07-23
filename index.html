@@ -61,9 +61,9 @@
   .dojo-rules li b { color: var(--text); }
   footer { padding: 40px 0 60px; text-align: center; color: var(--muted); font-size: 13px; }
   a { color: var(--belt-soft); }
-  [data-ko] { display: none; }
-  html.ko [data-en] { display: none; }
-  html.ko [data-ko] { display: revert; }
+  /* 언어 토글 — !important로 .card b 등 더 구체적인 규칙보다 항상 우선 */
+  html:not(.ko) [data-ko] { display: none !important; }
+  html.ko [data-en] { display: none !important; }
 </style>
 </head>
 <body>
